@@ -1,3 +1,3 @@
 #!/usr/bin/python3
-str1 = "object_oriented programming with Python"
-print(str1[0:6] + str1[-6:])
+str1 = "object_oriented_programming_with_python"
+print(str1[:6] + str1[-6:])
