@@ -1,0 +1,64 @@
+The ``1-my_list`` module
+========================
+
+    >>> MyList = __import__('1-my_list').MyList
+
+Check instantiation
+
+    >>> my_list = MyList()
+    >>> print(my_list)
+    []
+
+Check it inherits from list
+
+    >>> issubclass(MyList, list)
+    True
+    >>> isinstance(MyList(), list)
+    True
+
+Check __str__ / append and regular print
+
+    >>> my_list.append(1)
+    >>> my_list.append(4)
+    >>> my_list.append(2)
+    >>> my_list.append(3)
+    >>> my_list.append(5)
+    >>> print(my_list)
+    [1, 4, 2, 3, 5]
+
+Check print_sorted with not-sorted appends
+
+    >>> my_list.print_sorted()
+    [1, 2, 3, 4, 5]
+
+Check print_sorted does not modify the original (returns a new list)
+
+    >>> print(my_list)
+    [1, 4, 2, 3, 5]
+    >>> my_list.print_sorted() is None
+    [1, 2, 3, 4, 5]
+    True
+
+Check print_sorted with already-sorted appends
+
+    >>> sorted_list = MyList()
+    >>> sorted_list.append(1)
+    >>> sorted_list.append(2)
+    >>> sorted_list.append(3)
+    >>> sorted_list.print_sorted()
+    [1, 2, 3]
+
+Check print_sorted with negative numbers
+
+    >>> neg = MyList()
+    >>> neg.append(-3)
+    >>> neg.append(0)
+    >>> neg.append(-1)
+    >>> neg.print_sorted()
+    [-3, -1, 0]
+
+Check print_sorted with an empty list
+
+    >>> empty = MyList()
+    >>> empty.print_sorted()
+    []
