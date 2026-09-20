@@ -72,3 +72,11 @@ integer_validator() with None raises TypeError:
     >>> bg.integer_validator("age", None)
     Traceback (most recent call last):
     TypeError: age must be an integer
+
+>>> bg.integer_validator()  # doctest: +IGNORE_EXCEPTION_DETAIL
+Traceback (most recent call last):
+TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+>>> bg.integer_validator("age")  # doctest: +IGNORE_EXCEPTION_DETAIL
+Traceback (most recent call last):
+TypeError: integer_validator() missing 1 required positional argument: 'value'
