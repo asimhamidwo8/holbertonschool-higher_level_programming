@@ -11,11 +11,4 @@ def add_integer(a, b=98):
     if not isinstance(b, (int, float)):
         raise TypeError("b must be an integer")
 
-    # منع NaN و inf بدون import
-    if a != a or b != b:
-        raise TypeError("a must be an integer")
-
-    if a in (float('inf'), float('-inf')) or b in (float('inf'), float('-inf')):
-        raise TypeError("a must be an integer")
-
     return int(a) + int(b)
