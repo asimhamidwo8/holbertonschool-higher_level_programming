@@ -2,13 +2,15 @@
 
 >>> text_indentation("Hello. World?")
 Hello.
-
+<BLANKLINE>
 World?
+<BLANKLINE>
 
 >>> text_indentation("Python: is cool.")
 Python:
-
+<BLANKLINE>
 is cool.
+<BLANKLINE>
 
 >>> text_indentation(12)
 Traceback (most recent call last):
