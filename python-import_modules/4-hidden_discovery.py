@@ -1,20 +1,24 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
+"""Print names defined in hidden_4.pyc."""
 
-import subprocess
+from xdis import load_module
+
+
+def find_names(code):
+    """Find names recursively in code objects."""
+    names = set(code.co_names)
+
+    for const in code.co_consts:
+        if hasattr(const, "co_names"):
+            names.update(find_names(const))
+
+    return names
+
 
 if __name__ == "__main__":
-    result = subprocess.check_output(
-        ["strings", "/tmp/hidden_4.pyc"], text=True
-    )
+    result = load_module("/tmp/hidden_4.pyc")
+    code = result[3]
 
-
-    names = []
-
-    for line in result.splitlines():
-        if line.startswith("__"):
-            continue
-        if line.isidentifier():
-            names.append(line)
-
-    for name in sorted(set(names)):
-        print(name)
+    for name in sorted(find_names(code)):
+        if not name.startswith("__"):
+            print(name)
