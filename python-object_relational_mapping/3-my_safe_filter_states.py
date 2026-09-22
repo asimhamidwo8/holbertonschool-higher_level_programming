@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Safely list states matching a given name."""
+"""List states safely matching a given name."""
 
 import MySQLdb
 import sys
@@ -16,14 +16,13 @@ if __name__ == "__main__":
 
     cursor = db.cursor()
 
-    cursor.execute(
-        "SELECT * FROM states WHERE name = %s ORDER BY id ASC",
-        (sys.argv[4],)
-    )
+    query = "SELECT * FROM states WHERE BINARY name = %s ORDER BY id ASC"
+    cursor.execute(query, (sys.argv[4],))
 
-    for state in cursor.fetchall():
-        print(state)
+    rows = cursor.fetchall()
+
+    for row in rows:
+        print(row)
 
     cursor.close()
     db.close()
-
